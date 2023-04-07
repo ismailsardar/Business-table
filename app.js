@@ -44,8 +44,8 @@ mongoose.connect(URI, OPTION, (error) => {
 app.use("/api/v1", router);
 
 // Add React Front End Routing
-app.get("*", function (req, res) {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
 
 module.exports = app;
