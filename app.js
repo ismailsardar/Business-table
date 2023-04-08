@@ -12,6 +12,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
+const morgan = require('morgan')
 
 // Database Lib Import
 const mongoose = require("mongoose");
@@ -23,6 +24,8 @@ app.use(helmet());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
+app.use(morgan('dev'));
+require('dotenv').config();
 
 // Body Parser Implement
 app.use(bodyParser.json());
@@ -32,10 +35,7 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 // Mongo DB Database Connection
-let URI =
-  "mongodb+srv://<username>:<password>@cluster0.7uslu.mongodb.net/CRUD?retryWrites=true&w=majority";
-let OPTION = { user: "testuser7777", pass: "testuser7777", autoIndex: true };
-mongoose.connect(URI, OPTION, (error) => {
+mongoose.connect(process.env.URL, (error) => {
   console.log("Connection Success");
   console.log(error);
 });
