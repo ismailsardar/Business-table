@@ -19,6 +19,12 @@ const ProductList = () => {
     let pagNo = event.selected + 1;
     GetProductList(pagNo, perPageKey, searchKey);
   };
+
+  const PageKeyOnChange = (e) => {
+    setPerPageKey(e.target.value);
+    GetProductList(1, e.target.value, searchKey);
+  };
+
   return (
     <>
       <div className="container my-5">
@@ -31,7 +37,21 @@ const ProductList = () => {
                     <div className="col-6">
                       <h5 className="text-primary">My Product List</h5>
                     </div>
-                    <div className="col-2"></div>
+                    <div className="col-2">
+                      <select
+                        onChange={PageKeyOnChange}
+                        className="form-control mx-2 form-select-sm form-select form-control-sm"
+                      >
+                        <option value="5">5 Per Page</option>
+                        <option value="10">10 Per Page</option>
+                        <option value="20">20 Per Page</option>
+                        <option value="30">30 Per Page</option>
+                        <option value="50">50 Per Page</option>
+                        <option value="100">100 Per Page</option>
+                        <option value="200">200 Per Page</option>
+                        <option value="200">200 Per Page</option>
+                      </select>
+                    </div>
                     <div className="col-4">
                       <div className="input-group mb-3"></div>
                     </div>
@@ -114,9 +134,9 @@ const ProductList = () => {
                               <th className="text-uppercase text-primary  font-weight-bolder opacity-7 ps-2">
                                 Brand
                               </th>
-                              <th className="text-uppercase text-primary  font-weight-bolder opacity-7 ps-2">
+                              {/* <th className="text-uppercase text-primary  font-weight-bolder opacity-7 ps-2">
                                 Category
-                              </th>
+                              </th> */}
                             </tr>
                           </thead>
                           <tbody>
@@ -158,11 +178,11 @@ const ProductList = () => {
                                     {item.brand}
                                   </p>
                                 </td>
-                                <td>
+                                {/* <td>
                                   <span className="text-muted text-sm font-weight-bold">
                                     {item.category}
                                   </span>
-                                </td>
+                                </td> */}
                               </tr>
                             ))}
                           </tbody>
