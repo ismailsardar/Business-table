@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
 import { GetProductList } from "../APIRequest/ApiRequest";
 
@@ -13,6 +14,11 @@ const ProductList = () => {
   let ALLProduct = useSelector((state) => state.product.ALLProduct);
   let Total = useSelector((state) => state.product.Total);
   // console.log(ALLProduct)
+
+  const handlePageClick = (event) => {
+    let pagNo = event.selected + 1;
+    GetProductList(pagNo, perPageKey, searchKey);
+  };
   return (
     <>
       <div className="container my-5">
@@ -163,7 +169,29 @@ const ProductList = () => {
                         </table>
                       </div>
                     </div>
-                    <div className="col-12 mt-5"></div>
+                    <div className="col-12 mt-5">
+                      <nav aria-label="Page navigation example">
+                        <ReactPaginate
+                          previousLabel="<"
+                          nextLabel=">"
+                          pageClassName="page-item"
+                          pageLinkClassName="page-link"
+                          previousClassName="page-item"
+                          previousLinkClassName="page-link"
+                          nextClassName="page-item"
+                          nextLinkClassName="page-link"
+                          breakLabel="..."
+                          breakClassName="page-item"
+                          breakLinkClassName="page-link"
+                          pageCount={Total / perPageKey}
+                          marginPagesDisplayed={2}
+                          pageRangeDisplayed={5}
+                          onPageChange={handlePageClick}
+                          containerClassName="pagination"
+                          activeClassName="active"
+                        />
+                      </nav>
+                    </div>
                   </div>
                 </div>
               </div>

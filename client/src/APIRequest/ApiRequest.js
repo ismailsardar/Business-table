@@ -1,7 +1,7 @@
 import axios from "axios";
-import store from "../redux/store/store";
-import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
 import { SetALLProduct, SetTotal } from "../redux/slice/productSlice";
+import { HideLoader, ShowLoader } from "../redux/slice/settingsSlice";
+import store from "../redux/store/store";
 const BaseURL = "http://localhost:5000/api/v1";
 
 export function GetProductList(pageNo, perPage, searchKey) {
