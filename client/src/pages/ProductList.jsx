@@ -25,6 +25,18 @@ const ProductList = () => {
     GetProductList(1, e.target.value, searchKey);
   };
 
+  const searchOnChange = (e) => {
+    setSearchKey(e.target.value);
+    if (e.target.value.length === 0) {
+      setSearchKey("0");
+      GetProductList(1, perPageKey, "0");
+    }
+  };
+  
+  const searchData = () => {
+    GetProductList(1, perPageKey, searchKey);
+  };
+
   return (
     <>
       <div className="container my-5">
@@ -53,7 +65,23 @@ const ProductList = () => {
                       </select>
                     </div>
                     <div className="col-4">
-                      <div className="input-group mb-3"></div>
+                      <div className="input-group mb-3">
+                        <input
+                          onChange={searchOnChange}
+                          type="text"
+                          className="form-control form-control-sm"
+                          placeholder="Search.."
+                          aria-label="Recipient's username"
+                          aria-describedby="button-addon2"
+                        />
+                        <button
+                          onClick={searchData}
+                          className="btn  btn-outline-primary btn-sm mb-0"
+                          type="button"
+                        >
+                          Search
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div className="row">
